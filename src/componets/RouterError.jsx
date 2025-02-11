@@ -5,8 +5,9 @@ function RouterError() {
     console.log(route_err)
 
     return (
-        <div style={{minHeight:'100vh'}} className='bg-dark mx-auto py-5 text-white text-center '>
-            <h1>ERROR OCCURED : {route_err.status}</h1>
+        <div style={{minHeight:'100vh'}} className='bg-dark mx-auto my-auto py-5 text-white text-center '>
+            {/* <h1>{route_err.status}</h1> */}
+            <img style={{height:'500px', fill:'Background' }} src='../src/assets/404-pageerr.jpg'></img>
         </div>
     )
 }

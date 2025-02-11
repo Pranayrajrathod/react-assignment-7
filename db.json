@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": "b94b",
+      "username": "pranay",
+      "mail": "upenderchowan143@gmail.com",
+      "password": "pranay",
+      "confrimpassword": "pranay"
+    },
+    {
+      "id": "d1d6",
+      "username": "sdsdvs",
+      "mail": "dvsjkn",
+      "password": "ksjdvks",
+      "confrimpassword": "skjdvs"
+    },
+    {
+      "id": "a58d",
+      "username": "Mounika",
+      "mail": "mounika@gamil.com",
+      "password": "mounika",
+      "confrimpassword": "mounika"
+    }
+  ]
+}

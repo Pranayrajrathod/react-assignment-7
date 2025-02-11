@@ -1,19 +1,46 @@
 import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm  } from 'react-hook-form'
+import {  useNavigate} from 'react-router-dom'
+import Login from './Login'
 
 
 function Signup() {
+  const [errstate,setErrstate]=useState([])
   let [data,setData]=useState([])
   const { register, handleSubmit,formState:{errors} } = useForm()
+  const navigate=useNavigate()
   function submitHandler(obj){
-    console.log(obj)
+    fetch("http://localhost:3000/users",{
+      method:"POST",
+      headers:{
+        "context-type":"application/json"
+      },
+      body:JSON.stringify(obj)
+    })
+    .then(res=>{
+      if(res.status==201){
+        navigate('/login')
+      }
+      else{
+        navigate('/signup')
+      }
+      setErrstate(res.status)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
     setData({...data,obj})
+
   }
   console.log(errors )
   return (
-    <div style={{minHeight:'90vh'}} className='text-white px-3 jsutify-space-around text-center fs-1 bg-dark'>
-      <h1 className='mx-auto fs-1 px-3 py-3 '>SIGNUP</h1>
-      <form className='text-center text-capitalize px-5 text-info' onSubmit={handleSubmit(submitHandler)}>
+    <div style={{minHeight:'90vh'}} className='text-white px-3 py-4 jsutify-space-around text-center fs-1 bg-dark'>
+    <h1 className='mx-auto fs-1 px-3 py-3 '>SIGNUP</h1>
+
+    {
+      (errstate.status!==null)?
+      (
+        <form className='text-center text-capitalize px-5 text-info' onSubmit={handleSubmit(submitHandler)}>
         <div className='mx-1 form-group my-1'>
           <label className='control-label py-2'>Name </label>
           <input  style={{maxWidth:'400px'}} className='form-control mx-auto ' type='username' {...register('username' , {required:'true' , minLength:5})} id='username' placeholder='Usename'></input>
@@ -47,6 +74,14 @@ function Signup() {
         </div>
         <button type='submit' className='btn btn-success'>Sign UP</button>
       </form>
+      )
+      :
+      (
+        <h1>error occured : {errstate}</h1>
+      )
+
+    }
+      
     </div>
   )
 }

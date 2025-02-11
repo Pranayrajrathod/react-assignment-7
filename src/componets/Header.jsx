@@ -12,6 +12,11 @@ function Header() {
                 </Link>
             </li>
             <li className='nav-item'>
+                <Link to='swiggy' className='nav-link text-white'>
+                    Swiggy
+                </Link>
+            </li>
+            <li className='nav-item'>
                 <Link to='login' className='nav-link text-white'>
                     Login
                 </Link>
