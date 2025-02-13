@@ -8,18 +8,25 @@
       "confrimpassword": "pranay"
     },
     {
-      "id": "d1d6",
-      "username": "sdsdvs",
-      "mail": "dvsjkn",
-      "password": "ksjdvks",
-      "confrimpassword": "skjdvs"
-    },
-    {
       "id": "a58d",
       "username": "Mounika",
       "mail": "mounika@gamil.com",
       "password": "mounika",
       "confrimpassword": "mounika"
+    },
+    {
+      "id": "3cff",
+      "username": "rajesh",
+      "mail": "rajesh@gmail.com",
+      "password": "rajesh",
+      "confrimpassword": "rajesh"
+    },
+    {
+      "id": "00f2",
+      "username": "sai_g",
+      "mail": "sairathn@gmail.com",
+      "password": "102005",
+      "confrimpassword": "1234"
     }
   ]
 }
