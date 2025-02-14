@@ -58,21 +58,38 @@
 // export default UserProfile
 
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 function UserProfile() {
     let [Toedit, setEdit] = useState(false);
     const { register, handleSubmit, setValue } = useForm();
     const locatedobject = useLocation();
     let [currentUser, SetcurrentUser] = useState(locatedobject.state);
-
+    let navigate=useNavigate()
     function editclicked() {
         setValue('username', currentUser.username);
         setValue('mail', currentUser.mail);
         setValue('password', currentUser.password);
         setEdit(true);
     }
+
+    function deleteuser(id){
+        fetch(`http://localhost:3000/users/${id}`,{method:"DELETE"})
+        .then(
+          res=>res.json()
+        )
+        .then(
+          res=>{
+            console.log("detelte action succesful")
+            navigate('/signup')
+          }
+        )
+        .catch(
+          err=>console.log(err)
+        )
+      }
 
     function detailsChange(obj) {
         setEdit(false);
@@ -86,6 +103,7 @@ function UserProfile() {
         })
         .then(
           res=>res.json()
+        //   navigate('login')
         )
         .then(
           SetcurrentUser(obj)
@@ -112,7 +130,10 @@ function UserProfile() {
                     <input style={{ width: "40vh" }} type='email' {...register('mail')} id="mail" className='form-control my-2 mx-auto'></input>
                     <label htmlFor='password' className='form-label text-warning'>Password</label>
                     <input style={{ width: "40vh" }} type='text' {...register('password')} id="password" className='form-control my-2 mx-auto'></input>
-                    <button type='submit' className='btn btn-success'>Save details</button>
+                    {/* <div className='d-flex mx-auto'> */}
+                        <button className='btn btn-success'>Save details</button>
+                        <button className='btn btn-danger mx-2' onClick={()=>deleteuser(currentUser.id)}>Delete profile</button>
+                    {/* </div> */}
                 </form>
             )}
         </div>
